@@ -14,14 +14,17 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-function validateInput(id){
-    let x = document.getElementById(id).value;   
+function validateInput(name, parent){
+    if(!!parent == false){
+        parent = document;
+    }
+    let x = $(parent).find('[name='+name+']').val();   
     let text;
     if (x.trim() == "") {
         let p = document.createElement("p");
         p.className  = "validlabel";
         p.innerHTML = "This field is required";
-        document.getElementById(id).after(p);
+        $(parent).find('[name='+name+']').after(p);
     } else {
       text = "";
     }
@@ -55,31 +58,35 @@ if(document.location.href.indexOf("userinfo_upload.html")>=0){
         $('.validlabel').remove();
         let validate = true;
         $(".member input").each(function(index,input){
-           if(validateInput($(input).attr('id'))== false){
+           if(validateInput($(input).attr('name'))== false){
                 validate = false;
            }    
         })
         
        if(validate){   
             var profileFile = document.querySelector('#profile').files[0];
-            let storageRef = storage.ref();
-            let savePath = storageRef.child('profileImage/'+ $('#position').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
-            let saveAction = savePath.put(profileFile);
-            saveAction.then(()=>{
-                const ref = firebase.storage().ref(savePath.fullPath);
-                console.log(savePath.fullPath + "upload complete");
-            }).catch((err)=>{
-                console.log(err);
-            })
+            var savepath="";
+            if(!!profileFile){
+                let storageRef = storage.ref();
+                let savePath = storageRef.child('profileImage/'+ $('#name').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
+                let saveAction = savePath.put(profileFile);
+                saveAction.then(()=>{
+                    const ref = firebase.storage().ref(savePath.fullPath);
+                    console.log(savePath.fullPath + "upload complete");
+                }).catch((err)=>{
+                    console.log(err);
+                })
+                savepath = savePath.fullPath;
+            }   
             let userObject ={
-                position:$('#position').val(),
-                name:$('#name').val(),
-                description:$('#description').val(),
-                column1:$('#column1').val(),
-                column2:$('#column2').val(),
-                column3:$('#column3').val(),
-                hashtag:$('#hashtag').val(),
-                imgsrc:savePath.fullPath
+                position:$('[name=position]').val(),
+                name:$('[name=name]').val(),
+                description:$('[name=description').val(),
+                column1:$('[name=column1]').val(),
+                column2:$('[name=column2]').val(),
+                column3:$('[name=column3]').val(),
+                hashtag:$('[name=hashtag]').val(),
+                imgsrc:savepath
             }
             db.collection('userinfo').add(userObject).then((result) => {
                 console.log(result);
@@ -123,7 +130,7 @@ else if(document.location.href.indexOf("team.html") >=0){
                 </section>`
                 $('#content').append(template);
                 if(i==0){
-                    $('#content').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)'});
+                    $('#content').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
                 } 
                 i++;
 
@@ -136,4 +143,126 @@ else if(document.location.href.indexOf("team.html") >=0){
         })
         
     })
+
+
+    function teamEditMode(){
+      
+        const db = firebase.firestore();
+        db.collection('userinfo').get().then((snapshot)=>{
+            $('.member').remove();
+            let i =0;
+            snapshot.forEach((doc)=>{
+                
+                const ref = firebase.storage().ref(doc.data().imgsrc);
+                ref.getDownloadURL().then(function(url) 
+                {
+                
+                    var template = `
+                    <section class="member" id='${doc.id}'>
+                        <div>
+                            <div id="image_preview">
+                                <img src="${url}" id='profileImage' alt="사진영역"  style="width:260px; height:400px;">
+                            </div>
+                            <ul class="introduce notani">
+                                
+                                <li><h4>프로필 사진</h4>
+                                    <input class="required" type="file" value ='${doc.data().imgsrc}'
+                                        name="profile" name="profile"
+                                        accept="image/png, image/jpeg"></li>
+                                <li><h4>포지션</h4><input class="required" name="position" type='text' value='${doc.data().position}'></input></li>
+                                <li><h4>이름</h4><input class="required" name="name"  type='text' value='${doc.data().name}'></input></li>
+                                <li><h4>간단한 소개</h4><textarea style='width:100%;'class="required" name="description" >${doc.data().description}</textarea></li>
+                                <li><h4>자주하는 말</h4><input class="required" name="column1"  type='text'  value='${doc.data().column1}'></input></li>
+                                <li><h4>좋아하는 것</h4><input class="required" name="column2" type='text'  value='${doc.data().column2}'></input></li>
+                                <li><h4>싫어하는 것</h4><input class="required" name="column3" type='text'  value='${doc.data().column3}'></input></li>
+                                <li><h4>해쉬 태그</h4><input class="required" name="hashtag"  type='text'  value='${doc.data().hashtag}'></input></li>
+                                <li><input type="button"  class='btn btn-primary mt-3' name='send' value="업데이트" onClick='updateProfile(this)' /></li>
+                            </ul>            
+                        </div>     
+                    </section>`
+                    $('#content').append(template);
+                    if(i==0){
+                        $('#content').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
+                    } 
+                    i++;
+                    $('#'+doc.id).find('input[name=profile]').change(function(){
+                        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+                        //배열에 추출한 확장자가 존재하는지 체크
+                        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                            resetFormElement($(this)); //폼 초기화
+                            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+                        } else {
+                            file = $(this).parents('.member').find('[name=profile]').prop("files")[0];
+                            blobURL = window.URL.createObjectURL(file);
+                            $(this).parents('.member').find('#image_preview img').attr('src', blobURL);
+                            $(this).parents('.member').find('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+                        
+                        }
+                    })
+
+                }).catch(function(error) 
+                {
+                console.log(error);
+                });
+            
+
+            })
+            
+        })
+
+        
+     
+    }
+
+    function updateProfile(button){
+        const db = firebase.firestore();
+        const storage= firebase.storage();
+        $(button).parents('ul').find('.validlabel').remove();
+        var profileFile = $(button).parents('.member').find('input[name=profile]')[0].files[0];
+        let validate = true;
+        $(button).parents('ul').find("input").each(function(index,input){
+
+            if(!!profileFile == false && $(input).attr('name')=='profile'){
+
+            }else{
+                if(validateInput($(input).attr('name'),$(button).parents('.member'))== false){
+                    validate = false;
+               }    
+            }
+           
+        })
+        
+       if(validate){   
+            let userObject ={
+                position:$(button).parents('ul').find('[name=position]').val(),
+                name:$(button).parents('ul').find('[name=name]').val(),
+                description:$(button).parents('ul').find('[name=description]').val(),
+                column1:$(button).parents('ul').find('[name=column1]').val(),
+                column2:$(button).parents('ul').find('[name=column2]').val(),
+                column3:$(button).parents('ul').find('[name=column3]').val(),
+                hashtag:$(button).parents('ul').find('[name=hashtag]').val()               
+            }
+        
+            
+            if(!!profileFile){
+                let storageRef = storage.ref();
+                let savePath = storageRef.child('profileImage/'+ $(button).parents('ul').find('#name').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
+                let saveAction = savePath.put(profileFile);
+                saveAction.then(()=>{
+                    const ref = firebase.storage().ref(savePath.fullPath);
+                    console.log(savePath.fullPath + "upload complete");
+                }).catch((err)=>{
+                    console.log(err);
+                })
+                userObject.imgsrc = savePath.fullPath;
+            }
+         
+           
+           
+
+            let docId = $(button).parents('.member').attr('id');
+            db.collection('userinfo').doc(docId).update(userObject);
+            
+        }
+    }
 }

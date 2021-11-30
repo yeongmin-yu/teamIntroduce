@@ -29,6 +29,136 @@ header{
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/**common */
+  
+    
+.floatingButton {
+    display: absolute;
+    margin: auto;
+    position: fixed;
+    bottom: 200px;
+    right: 50px;
+}
+
+.floatingButton > .buttons {
+    box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18),
+    0px 4px 12px -7px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    display: flex;
+    width: 56px;
+    height: 56px;
+    margin: 20px auto 0;
+    position: relative;
+    -webkit-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+.floatingButton .buttons i {
+    margin: auto;
+    font-size: 26px;
+    color: #fff;
+    position: relative;
+    top: 1px;
+}
+
+.floatingButton > .buttons:last-child i {
+    font-size: 32px;
+    position: relative;
+    top: 1px;
+    left: 0;
+    transform: rotateZ(0deg);
+    -webkit-transition: all 0.12s ease-out;
+    transition: all 0.12s ease-out;
+}
+
+.floatingButton > .buttons:active,
+.floatingButton .buttons:focus,
+.floatingButton .buttons:hover {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+}
+
+.floatingButton .buttons:not(:last-child) {
+    width: 40px;
+    height: 40px;
+    margin: 20px auto 0;
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    transform: translateY(50px);
+}
+
+.floatingButton:not(:hover) .buttons:last-child {
+    background-color: #17b978;
+}
+
+.floatingButton:hover .buttons:not(:last-child) {
+    opacity: 1;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+
+.floatingButton:hover .buttons:last-child {
+    box-shadow: none;
+}
+
+.floatingButton:hover .buttons:last-child i {
+    top: -1px;
+    left: -1px;
+    transform: rotateZ(135deg);
+}
+
+.buttons:nth-last-child(1) {
+    background-color: #071a52;
+}
+
+.buttons:not(:last-child):nth-last-child(2) {
+    background-color: #086972;
+    -webkit-transition-delay: 20ms;
+    transition-delay: 20ms;
+}
+
+.buttons:not(:last-child):nth-last-child(3) {
+    background-color: #17b978;
+    -webkit-transition-delay: 80ms;
+    transition-delay: 80ms;
+}
+
+.buttons:not(:last-child):nth-last-child(4) {
+    background-color: #a7ff83;
+    -webkit-transition-delay: 140ms;
+    transition-delay: 140ms;
+}
+
+/* Show tooltip content on hover */
+
+[tooltip]:before {
+    bottom: 10%;
+    font-family: arial;
+    font-weight: 600;
+    border-radius: 2px;
+    background: rgba(7, 26, 82, 0.6);
+    color: #fff;
+    content: attr(tooltip);
+    font-size: 15px;
+    transform: scaleX(0);
+    transform-origin: right;
+    padding: 5px 5px;
+    margin-right: 12px;
+    position: absolute;
+    right: 100%;
+    white-space: nowrap;
+    -webkit-transition: all 0.05s ease-out 0s;
+    transition: all 0.05s ease-out 0s;
+}
+
+.floatingButton:hover [tooltip]:before {
+    transform: scaleX(1);
+    -webkit-transition: all 0.1s ease-out 0.18s;
+    transition: all 0.1s ease-out 0.18s;
+}
+
+
 @media (min-width:1350px) {/*최소1350 ~ 최대,pc 크기*/
 
     header{
@@ -83,6 +213,8 @@ header{
     }
     
     #content{
+        
+        min-height:100%;
         padding-bottom: 100px;
     }
     
@@ -251,91 +383,7 @@ header{
         top: 50%;
         transform: translateX(-50%) translateY(-50%);
     }
-    .fab-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-        user-select: none;
-        
-        bottom: 30px;
-        right: 30px;
-
-        position: fixed;
-        right: 50%; 
-        top: 180px; 
-        margin-right: -720px;
-        text-align:center;
-      }
-      .fab-container:hover {
-        height: 100%;
-      }
-      .fab-container:hover .sub-button:nth-child(2) {
-        transform: translateY(-80px);
-      }
-      .fab-container:hover .sub-button:nth-child(3) {
-        transform: translateY(-140px);
-      }
-      .fab-container:hover .sub-button:nth-child(4) {
-        transform: translateY(-200px);
-      }
-      .fab-container:hover .sub-button:nth-child(5) {
-        transform: translateY(-260px);
-      }
-      .fab-container:hover .sub-button:nth-child(6) {
-        transform: translateY(-320px);
-      }
-      .fab-container .fab {
-        position: relative;
-        height: 70px;
-        width: 70px;
-        background-color: #4ba2ff;
-        border-radius: 50%;
-        z-index: 2;
-      }
-      .fab-container .fab::before {
-        content: " ";
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 35px;
-        width: 35px;
-        background-color: inherit;
-        border-radius: 0 0 10px 0;
-        z-index: -1;
-      }
-      .fab-container .fab .fab-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-      }
-      .fab-container .fab .fab-content .material-icons {
-        color: white;
-        font-size: 48px;
-      }
-      .fab-container .sub-button {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        bottom: 10px;
-        right: 10px;
-        height: 50px;
-        width: 50px;
-        background-color: #4ba2ff;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-      }
-      .fab-container .sub-button:hover {
-        cursor: pointer;
-      }
-      .fab-container .sub-button .material-icons {
-        color: white;
-        padding-top: 6px;
-      }
+    
     
 }/*desktop*/
 
