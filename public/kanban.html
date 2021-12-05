@@ -1,266 +1,315 @@
 <!doctype html>
 <html lang="ko" data-n-head="lang">
+
 <head>
-    <meta charset="UTF-8">
-    <title>우리 팀 소개 페이지</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,mininum-scale=1.0,maximum-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>우리 팀 소개 페이지</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,mininum-scale=1.0,maximum-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Arbutus+Slab" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 
-    
-	<link rel="stylesheet" type="text/css" href="css/work.css"/>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-		<script>
-			$( document ).ready( function() {
-                
-                $('.ani_first').css({'opacity':'1','transform':'translateY(0)'});
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/kanban.css" />
 
-				$(window).scroll( function(){
-                    
-                   $('.ani').each( function(i){
-            
-                        var bottom_of_element = $(this).offset().top + $(this).outerHeight();
-                        var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-                        if( bottom_of_window-bottom_of_window*-0.1 > bottom_of_element ){
-                            $(this).animate({'opacity':'1','margin-top':'0'},300);
-                        }
-
-                    });
-                    
-                    $('.bg_deco2').each( function(i){
-            
-                        var bottom_of_element = $(this).offset().top + $(this).outerHeight();
-                        var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-                        if( bottom_of_window+bottom_of_window*0.3 > bottom_of_element ){
-                            $(this).animate({'opacity':'1','height':'600px'},1000);
-                        }
-
-                    });
-                });
-			} );
-		</script>
 </head>
-<body>
-<!--header-->
-<header>
-    <div class="nav_bar">
-        <a href="index.html">
-            <img src="./images/projectteam.png"/>
-        </a>
-        
-        <input id="burger" type="checkbox" />
-        
-        <label for="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        
-        <nav>
-            <ul id="navbar">
-                <li><a href="index.html">우리는</a></li>
-                <li><a href="team.html">우리팀소개</a></li>
-                <li><a href="work.html">Board</a></li>
-                <li><a href="goodman.html">이상형(희망사항)</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
 
-<div id="content">
-    <section class="section1 ani_first">
-        <h2>일을 일답게 한다는 것</h2>
-            우리는 어떻게 일을 하고 싶어 안달이 나 있는가? 
-        <div class="intro ani_first">
-            <h3>안녕하세요.</h3>
-            우리 팀의 대표 잡무를 맡고 있는 고남욱 입니다.<br>
-            우리 팀은 2014년 5월 회사 설립 이후, 수많은 난관을 극복하고 용케도(?) 살아남은 5년 차 스타트업입니다.<br>
-            네. 맞습니다. 우리 팀은 이 페이지를 보고 계시는 여러분들이 생각하시는 것처럼 젊은 팀이 아닙니다.<br>
-            우리 서비스는 이제 막 세상에 태어나 걸음마를 위해 노력하는 갓난아기 같은 서비스 이지만, <br>
-            우리 서비스를 만드는 우리 팀은 5년이 된 팀입니다.<br>
-            <br>
-            <h3>우리는 수많은 실패를 겪었습니다.</h3>
-            몇 개의 사업을 하였다가 망하기도 하였으며, 어떤 사업은 준비하다가 시작해보지도 않고 접기도 하였습니다.<br>
-            심지어 지식공유 서비스는 이번이 처음도 아닙니다. 첫 번째는 보기 좋게 망했고, 두 번째인 우리 서비스는 나름대로,
-            가치 있게 성장하고 있습니다.<br>
-            슬픔의 시간은 많았지만, 돌이켜 보면 그 시간이 없었다면 지금의 이 소중한 시간조차 없었을 것으로 생각합니다.<br>
-            사람은 추억과 희망 둘 중의 하나만 있어도 살아나갈 수 있다고 하던데, 적어도 우리 팀은 슬픈(?) 추억도 있고, 
-            희망찬 내일도 있으니 참 행복한 팀입니다.<br>
-            <br>
-            <h3>그렇기에 우리 팀은 일을 일답게 하는 것을 매우 중요하게 생각합니다.</h3>
-            우리는 어떻게 일을 하는 팀인가?를 말하기보다, 우리는 어떻게 일을 하고 싶어 하는가에 더 노력 중인 팀입니다.<br>
-            그리고 우리가 말하는 '일을 일답게' 하는 것을 만들어가고 있는 조금은 긴 여정에 여러분과 함께 완성할 수 있기를 
-            희망합니다.<br>
-            <br>
-            <h3>우리는 멋지고 화려함을 말하기보다<br>
-            있는 그대로 부족한 모습을 드러내는 것을 좋아합니다.</h3>
-            우리 팀은 상상 이상으로 비효율적이고, 체계적이지 않으며, 너무나도 정신이 없습니다. <br>
-            하지만 우리는 반드시 아래의 <b>10가지의 업무 문화</b>를 만들려고 노력할 것입니다.
+<body>
+  <!--header-->
+  <header>
+    <div class="nav_bar">
+      <a href="index.html">
+        <img src="./images/projectteam.png" />
+      </a>
+
+      <input id="burger" type="checkbox" />
+
+      <label for="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav>
+        <ul id="navbar">
+          <li><a href="index.html">우리는</a></li>
+          <li><a href="team.html">우리팀소개</a></li>
+          <li><a href="kanban.html">Board</a></li>
+          <li><a href="goodman.html">이상형(희망사항)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div id="content">
+    <main class='project'>
+      <div class='project-info'>
+      
+        <div class='project-participants'>
+          <span></span>
+          <span></span>
+          <span></span>
+          <button class='project-participants__add'>Add Participant</button>
+            
+          </div>
+      </div>
+      <div class='project-tasks'>
+        <div class='project-column'>
+          <div class='project-column-heading'>
+            <h2 class='project-column-heading__title'>Back Log</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+          </div>
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Konsep hero title yang menarik</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>3</span>
+              <span><i class="fas fa-paperclip"></i>7</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+                  <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--design'>UI Design</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Icon di section our services</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>2</span>
+              <span><i class="fas fa-paperclip"></i>5</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+                  <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Konsep hero title yang menarik</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>2</span>
+              <span><i class="fas fa-paperclip"></i>3</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
         </div>
-    </section>
-    <section class="column style2 ani">
-         <div class="img img1">
-             <span> </span>
-         </div>
-         <div class="text">
-            <h3>잘 만들고, 잘 팔아서, 돈을 벌다</h3>
-            위 세 가지는 창업초기 부터 우리 팀이 가지고 있는 변치 않는 신념입니다.<br>
-            제품을 잘 만들었다 하더라도, 잘 팔지 못하면 돈을 벌 수 없고,<br>
-            제품을 잘 만들지 못했는데, 설령 잘 판다 하더라도, 오랫동안 사랑을 받으면서 가치 있는 <br>
-            돈을 벌 수 없을 것입니다.<br>
-            <br>
-            잘 만들지도, 잘 팔지도 못하는데, 가치 있는 수익 창출은 당연히 말이 안 된다고 생각하는 팀입니다.<br>
-            <br>
-            우리 팀은 잘 만들고, 잘 팔아서, 가치 있는 돈을 벌고자 하며, <br>
-            그렇게 될 수 있도록 일을 하고 싶어 합니다.
-         </div>
-    </section>
-    <section class="column style1 ani">
-        <h3>일은 어떻게든 되게끔 하는 것이 중요합니다.</h3>
-        우리는 한정된 리소스안에서, 최고의 효율을 뽑아내려고 부단히 노력합니다.<br>
-        그래서 우리에게 중요한 것은 가치 있는 과정을 기반으로 어떻게든 일을 되게끔 하려고 노력합니다.<br>
-        때론 너무나 깊은 신중함보다, 일을 되게끔 하기 위해 무작정 전장으로 뛰어들기도 합니다.<br>
-        탁상공론 보다, 일을 어떻게든 되게끔 하는 게 너무나 중요하게 생각합니다. 설령 그 결과가 좋지 않더라도 말이죠.<br>
-        어쨌든 우리는 살아남는 것이 중요한 세상에 살아가고 있습니다. 그렇기에 일을 되게끔 하는 것이 매우 중요합니다.<br>
-        <br>
-        미리 말씀드립니다만, 우리 팀은 너무나 많은 실패를 겪어봤기에, 실패에 너무나 열려있는 사고를 하고 있습니다.<br>
-        (처음부터 그러려고 했던 것은 아니었는데, 어쩌다 보니 그렇게 되었...)
-    </section>
-    <section class="column style1 ani">
-        <h3>체계적인 업무 프로세스를 매우 중요시합니다.</h3>
-        또한 역설적이지만, 매우 유기적이고, 체계적인 프로세스를 중요시하게 생각합니다.<br>
-        일을 일답게 한다는 것은, 내가 지금 일을 잘하고 있다고 느낄 수 있다는 것은 개인의 역량과 함께 조직의<br>
-        업무 프로세스가 함께 만나야 빛날 수 있는 일이리라 믿습니다. <br>
-        <br>
-        소위 일이 '착착' 감기는 듯한 느낌을 주는 것은 단연코 체계적인 업무 프로세스 위에서 벌어질 수 있는 일이라 믿습니다.<br>
-        트렐로, 지라, 슬렉 등 소위 힙(?)해 보이는 업무툴들은 그러한 그림을 만들기 위한 거드는 장치일 뿐, <br>
-        유기적이고 체계적인 업무 프로세스가 없다면 그러한 툴들도 무용지물이라고 생각합니다.
-    </section>
-    <section class="column style1 ani">
-        <h3>우리는 무조건적인 수평적인 문화를 싫어합니다.</h3>
-        우리 팀은 수직적인 문화와 수평적인 문화가 아주 잘 버무려진 회사가 훌륭한 조직문화라고 생각합니다. <br>
-        이곳은 회사이기 때문입니다.<br>
-        <br>
-        영어 닉네임을 서로 부르고, ~님자 호칭을 부른다고 해서 그 문화가 수평적인 문화라고 생각하지 않습니다. 절대로.<br>
-        우리 팀이 생각하는 수평적인 문화란, 회의 때 빛이 난다고 생각합니다.<br>
-        우리 팀은 정말 회의 때 만큼은 수평적인 상태에서 치열하고 토론하고 건전하게 싸웁니다.<br>
-        그리고 그렇게 도출된 결과는 일이 되게끔 하기 위해 매우 수직적으로 일을 진행하고 결과물을 만들어 냅니다.<br>
-        즉, 토론은 수평적으로 하고 일은 수직적으로 일합니다.<br>
-        <br>
-        (우리의 구성원들이 저에게 평소 하는 행동을 보시면, 아...이 회사는 역수직구조의 조직 문화를 가졌구나..라고 
-        생각하실 수도 있습니다. 나 A형인데)
-    </section>
-    <section class="column style2 ani">
-         <div class="img img2">
-             <span> </span>
-         </div>
-         <div class="text">
-            <h3>자율과 자유를 구분 지으려 합니다.</h3>
-            우리는 룰 속의 자유를 원하는 팀입니다.<br>
-            자율 방임적인 일을 하길 원하지, 자유방임적인 일을 하기는 원하지 않습니다. 이곳은 회사이기 때문입니다.<br>
-            <br>
-            지킬 것은 제대로 지키고, 편하게 해야 할 것은 아주 느슨하고 편하게 하려고 합니다. <br>
-            가령 회사와 관련된 시간 약속은 정말 회 뜨는 칼 같이 지키려고 노력하지만, 휴가는 또 무제한입니다. <br>
-            (휴가가 얼마나 자유로운지 우리 디자이너님이 보증합니다)<br>
-            <br>
-            일은 같이 모여서 해야 한다는 생각이 강한 팀이기에 재택근무는 지양하지만, 출근 후 밖에서 일하고 들어오겠다는 
-            것은 말리지 않습니다.<br>
-            출근 시간은 정말 칼같이 지키려고 노력하지만, 또 일이 없으면 퇴근 시간 전이라도 그냥 집에 가는 
-            회사이기도 합니다.<br>  
-            <br>
-            우리는 그야말로, 정해져 있는 룰 속에서 자율적으로 일하려고 합니다.
-         </div>
-    </section>
-    <section class="column style1 ani">
-        <h3>정말 사용자 관점에서 사고하려 노력합니다.</h3>
-        우리 팀이 추진했던 여러 번의 사업들의 실패의 모든 공통점은 생각해보면 딱 두 가지였습니다.<br>  
-        첫 번째는 사용자 입장이 아니라, 제작자의 관점에서 프로덕트를 기획하고 만들었기 때문이었습니다.<br>  
-        두 번째는 저것을 알아차리지 못한 저의 잘못입니다.<br>  
-        <br>  
-        지금의 우리 팀은 기획, 디자인, 개발에 이르기까지 오로지 딱 하나만 생각합니다.<br>  
-        '아니 그러니깐 사용자 입장에서는 이게 말이 안 된다니깐!! 이건 너무 우리 입장이잖아요!!'<br>  
-        <br>  
-        제작자는 시간이 흐르면 흐를수록 시야가 급격히 좁아집니다. 그러므로 사용자 입장에서 생각하지 않으면 
-        무조건 실패합니다.
-        <br>  
-        제작자가 놓친 1%의 실수는, 소비자의 손에 들어가면 99%의 실패한 제품이 됩니다.
-    </section>
-    <section class="column style1 ani">
-        <h3>데이터에 기반을 둔 사고와 의사 결정을 하려 노력합니다.</h3>
-        물론 눈앞에 펼쳐져 있는 정량적인 숫자들이 정답을 담보하는 것은 아닙니다.<br> 
-        때로는 정략적인 숫자보다, 근거는 없지만 직감이 맞을 때도 있지요.<br> 
-        <br> 
-        하지만 되도록 정량적인 데이터에 기반을 두어 사고하려고 노력하며, 그에 따른 의사 결정을 하려고 노력합니다.<br> 
-        몇 번의 실패를 거듭하면서 겪은 바로는, 데이터에 기반을 둔 사고는 무조건적인 정답은 아니지만, 확실히 실패 확률을 
-        줄여주긴 합니다.<br> 
-        (진작 알았어야 했는데...)
-    </section>
-    <section class="column style1 ani">
-        <h3>좋은 커뮤니케이션이 좋은 팀을 만들고, 좋은 제품을 만든다고 믿습니다.</h3>
-        좋은 커뮤니케이션은 친절한 말투만을 의미하는 것은 아닙니다.<br> 
-        대화, 텍스트를 막론하고 명확하고, 정확하며, 간결하게 메시지를 전달하는 것은 매우 중요합니다.<br> 
-        그래야 구성원 간의 미스 커뮤니케이션이 나지 않고, 일은 소위 '착착' 감기게 됩니다.<br> 
-        <br> 
-        잘 알아듣고, 잘 전달하는 능력, 중요하고 필요한 정보를 제때 공유해주는 능력, <br> 
-        인과관계를 명확하게 파악하는 능력, 우리 팀이 생각하는 훌륭한 커뮤니케이션 능력입니다.
-    </section>
-    <section class="column style2 ani">
-         <div class="img img3">
-             <span> </span>
-         </div>
-         <div class="text">
-            <h3>극도의 집중력이 중요합니다.</h3>
-            의자에 앉아있는 시간이 일을 열심히 한다는 것과 정비례한다고 생각하지 않습니다.<br> 
-            (물론 긴급한 프로젝트가 돌아갈 때는 의자에 앉아있는 시간이 중요할 때도 있습니다만...)<br> 
-            단 1시간이라도 극도의 집중력을 발휘하는 것이 더 중요하다고 생각합니다.<br> 
-            <br> 
-            극도의 집중력을 기본으로, 심지어 의자에 앉아있는 시간마저 길다면 더할 나위 없이 좋겠지만,<br> 
-            우리는 사람이기에 사실상 두 가지를 동시에 가져가기는 쉽지 않습니다.<br> 
-            <br> 
-            단 몇 시간을 일하더라도 극도의 집중력 있는 업무 수행이,<br> 
-            어중이떠중이 10시간보다 100배, 아니 1,000배 나은 결과물을 가져다준다고 믿습니다.
-         </div>
-    </section>
-    <section class="column style1 ani">
-        <h3>일은 철저한 계획으로 시작하여, 공유라는 과정을 거쳐, 보고로 마무리됩니다.</h3>
-        모든 직군을 막론하고, 일은 철저한 계획을 바탕으로 착수하여, <br>
-        서로 간의 공유라는 과정을 거쳐, 깔끔한 보고로 마무리됩니다.<br>
-        <br>
-        이 세 가지가 명확하게 이루어진다면, 일은 저절로 잘되고, <br>
-        결과물은 더할 나위 없이 좋을 수밖에 없다고 강력하게 믿습니다.
-    </section>
-    
-    <span class="bgdeco1"> </span>
-    <span class="bgdeco2"> </span>
-</div>
-<footer>
-     <div class="footer_inner">
-		<div class="footer_center">
-			<ul class="company">
-                <li>우리팀 정보</li>
-			</ul>
-			<address>
-                주소 : 대한민국 성균관대학교
-			</address>
-			<p>
-			    대표이사 : 고남욱 <br />
-			    이메일 : namwook@mail.com<br />
-			</p>
-			<p class="copyright">
-			    Copyright 2021 Namwook. All rights reserved.
-			</p>
-		</div>
-		<div class="footer_right">
-			<ul class="sns">
-			    <li><a href="https://www.facebook.com/aha.official/?ref=br_rs" target="_blank"><img src="images/logo_facebook.svg" alt=""/></a></li>
-			    <li><a href="https://medium.com/aha-official" target="_blank"><img src="images/logo_medium.svg" alt=""/></a></li>
-			    <li><a href="https://twitter.com/_aha_official" target="_blank"><img src="images/logo_twitter.svg" alt=""/></a></li>
-                <li><a href="https://blog.naver.com/aha-aha" target="_blank"><img src="images/logo_blog.svg" alt=""/></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
+        <div class='project-column'><div class='project-column-heading'>
+            <h2 class='project-column-heading__title'>In Progress</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+          </div>
+       
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--design'>UI Design</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Replace lorem ipsum text in the final designs</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>5</span>
+              <span><i class="fas fa-paperclip"></i>5</span> 
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--design'>UI Design</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Replace lorem ipsum text in the final designs</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>5</span>
+              <span><i class="fas fa-paperclip"></i>5</span> 
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Create and generate the custom SVG illustrations.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>8</span>
+              <span><i class="fas fa-paperclip"></i>7</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Proof read the legal page and check for and loopholes</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>12</span>
+              <span><i class="fas fa-paperclip"></i>11</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Create the landing page graphics for the hero slider.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>4</span>
+              <span><i class="fas fa-paperclip"></i>8</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          </div>
+        <div class='project-column'><div class='project-column-heading'>
+            <h2 class='project-column-heading__title'>Needs Review</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+          </div>
+            
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Check the company we copied doesn't think we copied them.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>4</span>
+              <span><i class="fas fa-paperclip"></i>0</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--design'>UI Design</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Design the about page.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>0</span>
+              <span><i class="fas fa-paperclip"></i>5</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Move that one image 5px down to make Phil Happy.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>2</span>
+              <span><i class="fas fa-paperclip"></i>2</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          </div>
+        <div class='project-column'><div class='project-column-heading'>
+            <h2 class='project-column-heading__title'>Done</h2><button class='project-column-heading__options'><i class="fas fa-ellipsis-h"></i></button>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Send Advert illustrations over to production company.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>12</span>
+              <span><i class="fas fa-paperclip"></i>5</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Dawn wants to move the text 3px to the right.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>3</span>
+              <span><i class="fas fa-paperclip"></i>7</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          <div class='task' draggable='true'>
+            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
+            <p>Amend the contract details.</p>
+            <div class='task__stats'>
+              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
+              <span><i class="fas fa-comment"></i>8</span>
+              <span><i class="fas fa-paperclip"></i>16</span>
+              <span class='task__owner'></span>
+            </div>
+          </div>
+          
+          </div>
+        
+      </div>
+    </main>
+    <!-- <aside class='task-details'>
+      <div class='tag-progress'>
+        <h2>Task Progress</h2>
+        <div class='tag-progress'>
+          <p>Copywriting <span>3/8</span></p>
+          <progress class="progress progress--copyright" max="8" value="3"> 3 </progress>
+        </div>
+        <div class='tag-progress'>
+          <p>Illustration <span>6/10</span></p>
+          <progress class="progress progress--illustration" max="10" value="6"> 6 </progress>
+        </div>
+        <div class='tag-progress'>
+          <p>UI Design <span>2/7</span></p>
+          <progress class="progress progress--design" max="7" value="2"> 2 </progress>
+        </div>
+      </div>
+      <div class='task-activity'>
+        <h2>Recent Activity</h2>
+        <ul>
+          <li>
+            <span class='task-icon task-icon--attachment'><i class="fas fa-paperclip"></i></span>
+            <b>Andrea </b>uploaded 3 documents
+            <time datetime="2021-11-24T20:00:00">Aug 10</time>
+          </li>
+            <li>
+                <span class='task-icon task-icon--comment'><i class="fas fa-comment"></i></span>
+            <b>Karen </b> left a comment
+            <time datetime="2021-11-24T20:00:00">Aug 10</time>
+          </li>
+          <li>
+              <span class='task-icon task-icon--edit'><i class="fas fa-pencil-alt"></i></span>
+            <b>Karen </b>uploaded 3 documents
+            <time datetime="2021-11-24T20:00:00">Aug 11</time>
+          </li>
+            <li>
+                <span class='task-icon task-icon--attachment'><i class="fas fa-paperclip"></i></span>
+            <b>Andrea </b>uploaded 3 documents
+            <time datetime="2021-11-24T20:00:00">Aug 11</time>
+          </li>
+          <li>
+              <span class='task-icon task-icon--comment'><i class="fas fa-comment"></i></span>
+            <b>Karen </b> left a comment
+            <time datetime="2021-11-24T20:00:00">Aug 12</time>
+          </li>
+        </ul>
+      </div>
+    </aside> -->
+  </div>
+  <footer>
+    <div class="footer_inner">
+      <div class="footer_center">
+        <ul class="company">
+          <li>우리팀 정보</li>
+        </ul>
+        <address>
+          주소 : 대한민국 성균관대학교
+        </address>
+        <p>
+          대표이사 : 고남욱 <br />
+          이메일 : namwook@mail.com<br />
+        </p>
+        <p class="copyright">
+          Copyright 2021 Namwook. All rights reserved.
+        </p>
+      </div>
+      <div class="footer_right">
+        <ul class="sns">
+          <li><a href="https://www.facebook.com/aha.official/?ref=br_rs" target="_blank"><img
+                src="images/logo_facebook.svg" alt="" /></a></li>
+          <li><a href="https://medium.com/aha-official" target="_blank"><img src="images/logo_medium.svg" alt="" /></a>
+          </li>
+          <li><a href="https://twitter.com/_aha_official" target="_blank"><img src="images/logo_twitter.svg"
+                alt="" /></a></li>
+          <li><a href="https://blog.naver.com/aha-aha" target="_blank"><img src="images/logo_blog.svg" alt="" /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/kanban.js" type="text/javascript"></script>
 </body>
+
 </html>

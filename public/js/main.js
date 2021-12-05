@@ -35,25 +35,25 @@ function validateInput(name, parent){
 }
 
 
-if(document.location.href.indexOf("userinfo_upload.html")>=0){
+if(document.location.href.indexOf("team_add.html")>=0){
     const db = firebase.firestore();
     const storage= firebase.storage();
 
-    $('#profile').change(function(){
+    $('[name=profile]').change(function(){
         ext = $(this).val().split('.').pop().toLowerCase(); //확장자
         //배열에 추출한 확장자가 존재하는지 체크
         if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
             resetFormElement($(this)); //폼 초기화
             window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
         } else {
-            file = $('#profile').prop("files")[0];
+            file = $('[name=profile]').prop("files")[0];
             blobURL = window.URL.createObjectURL(file);
             $('#image_preview img').attr('src', blobURL);
             $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
           
         }
     })
-    $('#send').click(function(){
+    $('input[name=send]').click(function(){
         
         $('.validlabel').remove();
         let validate = true;
@@ -64,7 +64,7 @@ if(document.location.href.indexOf("userinfo_upload.html")>=0){
         })
         
        if(validate){   
-            var profileFile = document.querySelector('#profile').files[0];
+            var profileFile =$('.member').find('input[name=profile]')[0].files[0];
             var savepath="";
             if(!!profileFile){
                 let storageRef = storage.ref();
@@ -91,7 +91,7 @@ if(document.location.href.indexOf("userinfo_upload.html")>=0){
             db.collection('userinfo').add(userObject).then((result) => {
                 console.log(result);
             
-                window.location.href = '../team.html'
+                window.location.href = './team.html'
             }).catch((err)=>{
                 console.log(err);
             })
@@ -161,7 +161,7 @@ else if(document.location.href.indexOf("team.html") >=0){
                     <section class="member" id='${doc.id}'>
                         <div>
                             <div id="image_preview">
-                                <img src="${url}" id='profileImage' alt="사진영역"  style="width:260px; height:400px;">
+                                <img src="${url}" id='profileImage' alt="사진영역"  ">
                             </div>
                             <ul class="introduce notani">
                                 
