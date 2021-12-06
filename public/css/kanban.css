@@ -43,7 +43,14 @@
     --white: #ffffff;
     --light-grey: #c4cad3;
     --input-outline: #2e87ba;
- 
+    --tag-1:#ceecfd;
+    --tag-1-text:#2e87ba;
+    --tag-2:#d6ede2;
+    --tag-2-text:#13854e;
+    --tag-3:#ceecfd;
+    --tag-3-text:#2d86ba;
+    --tag-4:#f2dcf5;
+    --tag-4-text:#a734ba;
     --purple: #7784ee;
 }
 
@@ -70,12 +77,16 @@ h1 {
     font-size: 30px;
 }
 
+.validlabel{
+  color: red;
+}
 .project {
     padding: 2rem 0;
     margin-top: 70px;
-    margin-left: 2rem;
-    margin-right: 2rem;
+    padding-left: 2%;
+    padding-right:  2%;
     max-width: 100%;
+    width: 100%;
     display: inline-block;
 }
 .project-info {
@@ -147,15 +158,15 @@ h1 {
     padding: 2px 13px;
     font-size: 12px;
 }
-.task__tag--copyright {
+.task__tag--Idea {
     color: var(--tag-4-text);
     background-color: var(--tag-4);
 }
-.task__tag--design {
+.task__tag--Bug {
     color: var(--tag-3-text);
     background-color: var(--tag-3);
 }
-.task__tag--illustration {
+.task__tag--Task {
     color: var(--tag-2-text);
     background-color: var(--tag-2);
 }
@@ -183,15 +194,35 @@ h1 {
 .task__stats svg {
     margin-right: 5px;
 }
-.task__owner {
+.task__priority_green {
     width: 25px;
     height: 25px;
     border-radius: 100rem;
-    background: var(--purple);
+    background: green;
     position: absolute;
     display: inline-block;
     right: 0;
     bottom: 0;
+}
+.task__priority_yellow {
+  width: 25px;
+  height: 25px;
+  border-radius: 100rem;
+  background: #ffc800;
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  bottom: 0;
+}
+.task__priority_red {
+  width: 25px;
+  height: 25px;
+  border-radius: 100rem;
+  background: red;
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  bottom: 0;
 }
 
 .task-hover {
@@ -250,7 +281,7 @@ h1 {
 
 .inputTask textarea {
     width: 100%;
-    max-width:299px;
+    max-width:573px;
     height: 80px;
     border-radius: 5px;
     margin-bottom: 5px;

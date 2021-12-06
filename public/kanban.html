@@ -31,7 +31,7 @@
         <ul id="navbar">
           <li><a href="index.html">우리는</a></li>
           <li><a href="team.html">우리팀소개</a></li>
-          <li><a href="kanban.html">Board</a></li>
+          <li><a href="kanban.html">칸반보드</a></li>
         </ul>
       </nav>
     </div>
@@ -42,84 +42,23 @@
     <main class='project'>
       
       <div class='project-tasks'>
-        <div class='project-column'>
+        <div class='project-column' name='Backlog'>
           <div class='project-column-heading'>
-            <h2 class='project-column-heading__title'>Back Log</h2><button class='project-participants__add' value='backlog'></button>
+            <h2 class='project-column-heading__title'>Back Log</h2><button class='project-participants__add' value='Backlog'></button>
           </div>
-          <div class='task' draggable='true'>
-            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
-            <p>Konsep hero title yang menarik</p>
-            <div class='task__stats'>
-              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-              <span><i class="fas fa-comment"></i>3</span>
-              <span><i class="fas fa-paperclip"></i>7</span>
-              <span class='priority'>우선순위 : 상</span>
-              <span class='task__owner'></span>
-            </div>
-          </div>
-         
         </div>
-        <div class='project-column'><div class='project-column-heading'>
+        <div class='project-column' name='InProgress'><div class='project-column-heading'>
             <h2 class='project-column-heading__title'>In Progress</h2><button class='project-participants__add' value='InProgress'></button>
-          </div>
-       
-          <div class='task' draggable='true'>
-            <div class='task__tags'><span class='task__tag task__tag--design'>UI Design</span><button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button></div>
-            <p>Replace lorem ipsum text in the final designs</p>
-            <div class='task__stats'>
-              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-              <span><i class="fas fa-comment"></i>5</span>
-              <span><i class="fas fa-paperclip"></i>5</span> 
-              <span class='task__owner'></span>
-            </div>
-          </div>
-         
-          
-          <div class='task' draggable='true'>
-            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
-            <p>Proof read the legal page and check for and loopholes</p>
-            <div class='task__stats'>
-              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-              <span><i class="fas fa-comment"></i>12</span>
-              <span><i class="fas fa-paperclip"></i>11</span>
-              <span class='task__owner'></span>
-            </div>
-          </div>
-          
-          
-          </div>
-        <div class='project-column'><div class='project-column-heading'>
+          </div>          
+        </div>
+        <div class='project-column' name='Review'><div class='project-column-heading'>
             <h2 class='project-column-heading__title'>Review</h2><button class='project-participants__add' value='Review'></button>
           </div>
-            
-          <div class='task' draggable='true'>
-            <div class='task__tags'><span class='task__tag task__tag--copyright'>Copywriting</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
-            <p>Check the company we copied doesn't think we copied them.</p>
-            <div class='task__stats'>
-              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-              <span><i class="fas fa-comment"></i>4</span>
-              <span><i class="fas fa-paperclip"></i>0</span>
-              <span class='task__owner'></span>
-            </div>
-          </div>
-          </div>
-        <div class='project-column'><div class='project-column-heading'>
+        </div>
+        <div class='project-column' name='Done'><div class='project-column-heading'>
             <h2 class='project-column-heading__title'>Done</h2><button class='project-participants__add' value='Done'></button>
           </div>
-          
-          <div class='task' draggable='true'>
-            <div class='task__tags'><span class='task__tag task__tag--illustration'>Illustration</span><button class='task__options'><i class="fas fa-ellipsis-h"></i></button></div>
-            <p>Send Advert illustrations over to production company.</p>
-            <div class='task__stats'>
-              <span><time datetime="2021-11-24T20:00:00"><i class="fas fa-flag"></i>Nov 24</time></span>
-              <span><i class="fas fa-comment"></i>12</span>
-              <span><i class="fas fa-paperclip"></i>5</span>
-              <span class='task__owner'></span>
-            </div>
-          </div>
-        
-          
-          </div>
+        </div>
         
       </div>
     </main>
