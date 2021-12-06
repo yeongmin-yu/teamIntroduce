@@ -32,7 +32,10 @@ header{
 }
 
 /**common */
-  
+h3{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-size: 23px;
+}
     
 .floatingButton {
     display: absolute;
