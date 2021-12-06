@@ -183,7 +183,7 @@ h3{
     cursor: pointer;
   }
   
-@media (min-width:1350px) {/*최소1350 ~ 최대,pc 크기*/
+@media (min-width:997px) {/*최소1350 ~ 최대,pc 크기*/
     nav li:nth-of-type(2) a{
         color: #fff;
         background: #2b4443;
@@ -269,94 +269,6 @@ h3{
     
     
 }/*desktop*/
-
-@media (min-width:997px) and (max-width:1349px){
-
-     nav li:nth-of-type(2) a{
-        color: #fff;
-        background: #2b4443;
-    }
-    
-    
-    .section1{
-        padding: 115px 0 70px 0;
-        text-align: center;
-    }
-    
-    h2{
-        font-family: 'S-CoreDream-8Heavy';
-        font-size: 55px;
-        padding: 25px 0;
-    }
-    
-    .hashtag{
-        font-size: 20px;
-        font-family: 'S-CoreDream-7ExtraBold';
-    }
-    
-    .member{
-        width: 800px;
-        margin: 0 auto;
-        padding: 50px 20px;
-        border-top: 3px solid #182f2e;
-    }
-    
-    .member img{
-        width: 220px;
-        padding: 0 20px;
-        float:left;
-    }
-    
-    .member > div:nth-of-type(1){
-        padding: 30px 0 10px 0;
-    }
-    
-    .member > div:after{
-        content: "";
-        display: block;
-        clear: both;
-    }
-    
-    .member > div .introduce{
-        float:left;
-        padding: 10px 0 0 30px;
-    }
-    
-    .introduce li{
-        padding-bottom: 20px;
-    }
-    .introduce input{
-    
-        width:100%;
-    }
-    .introduce.notani{
-        width: calc(100% - 300px);
-    }
-    .introduce textarea{
-    
-        box-sizing: border-box;
-        width:100%;
-    }
-    .designer_introduce{
-        padding: 30px;
-        font-family: 'S-CoreDream-7ExtraBold';
-        font-size: 130px;
-        text-indent: 30px;
-    }
-    
-    h4{
-        font-family: 'S-CoreDream-7ExtraBold';
-        font-size: 18px;
-        padding-bottom: 5px;
-    }
-    
-    .member .hashtag{
-        text-align: center;
-        padding-top: 15px;
-    }    
-
-}
-
 
 @media (min-width:768px) and (max-width:996px){
  
