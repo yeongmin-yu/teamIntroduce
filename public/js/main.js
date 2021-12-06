@@ -39,6 +39,7 @@ if(document.location.href.indexOf("team_add.html")>=0){
     const db = firebase.firestore();
     const storage= firebase.storage();
 
+    
     $('[name=profile]').change(function(){
         ext = $(this).val().split('.').pop().toLowerCase(); //확장자
         //배열에 추출한 확장자가 존재하는지 체크
@@ -68,7 +69,7 @@ if(document.location.href.indexOf("team_add.html")>=0){
             var savepath="";
             if(!!profileFile){
                 let storageRef = storage.ref();
-                let savePath = storageRef.child('profileImage/'+ $('#name').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
+                let savePath = storageRef.child('profileImage/'+ $('[name=name]').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
                 let saveAction = savePath.put(profileFile);
                 saveAction.then(()=>{
                     const ref = firebase.storage().ref(savePath.fullPath);
@@ -176,7 +177,12 @@ else if(document.location.href.indexOf("team.html") >=0){
                                 <li><h4>좋아하는 것</h4><input class="required" name="column2" type='text'  value='${doc.data().column2}'></input></li>
                                 <li><h4>싫어하는 것</h4><input class="required" name="column3" type='text'  value='${doc.data().column3}'></input></li>
                                 <li><h4>해쉬 태그</h4><input class="required" name="hashtag"  type='text'  value='${doc.data().hashtag}'></input></li>
-                                <li><input type="button"  class='btn btn-primary mt-3' name='send' value="업데이트" onClick='updateProfile(this)' /></li>
+                                <div style='display:flex; width:100%;justify-content: space-between'>
+                                <div style='width:82%'><input type="button"  style='width:100%' class='btn btn-primary mt-3' name='send' value="업데이트" onClick='updateProfile(this)' /></div>
+                                <div><svg style=' cursor:pointer;' xmlns="http://www.w3.org/2000/svg" onclick=deleteProfile(this) width="35" height="35" fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                              </svg></div>
+                                </div>
                             </ul>            
                         </div>     
                     </section>`
@@ -264,5 +270,20 @@ else if(document.location.href.indexOf("team.html") >=0){
             db.collection('userinfo').doc(docId).update(userObject);
             
         }
+    }
+
+    
+    function deleteProfile(dom){
+        let firebaseId = $(dom).parents('.member').attr('id');
+    
+        if(confirm('Are you sure you want to delete this?') == true){
+        const db = firebase.firestore();
+        db.collection('userinfo').doc(firebaseId).delete().then(() => {
+            $(dom).parents('.member').remove();
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+        }
+        
     }
 }
