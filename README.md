@@ -5,8 +5,11 @@
 npm 설치(최신버전)
 npm i -g firebase-tools
 
+#login
+firebase login
+
 #서버실행
-npm serve 
+firebase serve 
 
 #Deploy firebase hosting
 firebase deploy --only hosting
