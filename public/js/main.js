@@ -34,7 +34,7 @@ function validateInput(name, parent){
     else return false;
 }
 
-if("index.html"){
+if(document.location.href.indexOf("index.html")>=0){
 
     $( document ).ready( function() {
             
