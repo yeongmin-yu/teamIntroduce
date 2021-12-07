@@ -26,7 +26,7 @@ $(document).ready(function(){
        <div class='inputTask'>
          <div><label for='status'>Status</label><input style='font-weight:bold; color:brown' id="status" name="status" type="text" value=${$(button).val()} disabled></div>
          <div><label for='issueType'>IssueType</label> <select id='issueType'><option value="Idea" selected>Idea</option><option value="Bug">Bug</option><option value="Task" >Task</option></select></div>
-         <label for='issueContent'>Content</label> <textarea id= 'issueContent'></textarea>
+         <div><label for='issueContent'>Content</label> <textarea id= 'issueContent' name='issueContent'></textarea></div>
          <div><label for='priority'>Priority</label>  <select id='priority'><option value="Critical">Critical</option><option value="Minor" selected>Minor</option><option value="Trivial" >Trivial</option></select></div>
          <div><label for='owner'>Owner</label> <input id="owner" name="owner" type="text"></div>
          <div><label for='createDate'>Created</label> <input id="createDate" name="createDate" type="date" disabled></div>
@@ -44,7 +44,7 @@ $(document).ready(function(){
      </div>`);
 
     if($('[name=temptask]').length > 0){
-      let result =  confirm('작성중인 Task가 있습니다, 삭제하시고 새로 만드시겠습니까?');
+      let result =  confirm('There is a job being created, would you like to delete it and create a new one?');
       if(result== true){
         $('[name=temptask]').remove();
         $(button).parents('.project-column').append(addIssue);
@@ -65,49 +65,58 @@ $(document).ready(function(){
   function saveIssue(button){
     const db = firebase.firestore();
 
-    if($('#createDate').val() > $('#dueDate').val()){
-      alert("종료날짜는 생성날짜와 같거나 늦어야 합니다.")
-      return;
-    }
-    let issueObject ={
-      status:$('#status').val(),
-      issueType:$('#issueType').val(),
-      issueContent:$('#issueContent').val(),
-      priority:$('#priority').val(),
-      owner:$('#owner').val(),
-      createDate:$('#createDate').val(),
-      dueDate:$('#dueDate').val(),
-   }
-    db.collection('kanbanIssue').add(issueObject).then((result) => {
-
-      let priorityClass= ""
-      if(issueObject.priority == "Critical"){
-        priorityClass = "task__priority_red";
-      }else if(issueObject.priority == "Minor"){
-        priorityClass = "task__priority_yellow";
-      }else if(issueObject.priority == "Trivial"){
-        priorityClass = "task__priority_green";
-      }
-      let template = `<div class='task' draggable='true' id='${result.id}''>
-        <div class='task__tags'>
-          <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span>Owner <i class="fas fa-paperclip"></i>${issueObject.owner}</span>      
-          <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
-        </div>
-        <p>${issueObject.issueContent}</p>
-        <div class='task__stats'>
-          <span>Start <i class="fas fa-flag"></i>${issueObject.createDate}</span>
-          <span>Due <i class="fas fa-comment"></i>${issueObject.dueDate}</span>
-                  
-          <span class='${priorityClass}'></span>
-        </div>
-        </div>
-      </div>`
-      $('.project-column[name='+issueObject.status +']').append(template);
-
-      $(button).parents('.task').remove();
-    }).catch((err)=>{
-        console.log(err);
+    
+    $('.validlabel').remove();
+    let validate = true;
+    $(button).parents('.task').find("input").each(function(index,input){
+      if(validateInput($(input).attr('name'))== false){
+            validate = false;
+      }    
     })
+    if(validateInput("issueContent") ==false){
+      validate = false;
+    }
+    if(validate){  
+      let issueObject ={
+        status:$('#status').val(),
+        issueType:$('#issueType').val(),
+        issueContent:$('#issueContent').val(),
+        priority:$('#priority').val(),
+        owner:$('#owner').val(),
+        createDate:$('#createDate').val(),
+        dueDate:$('#dueDate').val(),
+      }
+      db.collection('kanbanIssue').add(issueObject).then((result) => {
+
+        let priorityClass= ""
+        if(issueObject.priority == "Critical"){
+          priorityClass = "task__priority_red";
+        }else if(issueObject.priority == "Minor"){
+          priorityClass = "task__priority_yellow";
+        }else if(issueObject.priority == "Trivial"){
+          priorityClass = "task__priority_green";
+        }
+        let template = `<div class='task' draggable='true' id='${result.id}''>
+          <div class='task__tags'>
+            <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span>Owner <i class="fas fa-paperclip"></i>${issueObject.owner}</span>      
+            <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
+          </div>
+          <p>${issueObject.issueContent}</p>
+          <div class='task__stats'>
+            <span>Start <i class="fas fa-flag"></i>${issueObject.createDate}</span>
+            <span>Due <i class="fas fa-comment"></i>${issueObject.dueDate}</span>
+                    
+            <span class='${priorityClass}'></span>
+          </div>
+          </div>
+        </div>`
+        $('.project-column[name='+issueObject.status +']').append(template);
+
+        $(button).parents('.task').remove();
+      }).catch((err)=>{
+          console.log(err);
+      })
+    }
   }
 
   (function loadIssue(){
@@ -246,20 +255,31 @@ function bindingEvent(){
 function validateInput(name){
  
   let x = $('[name='+name+']').val();   
-  let text;
+
+ 
   if (x.trim() == "") {
-      let p = document.createElement("p");
-      p.className  = "validlabel";
-      p.innerHTML = "This field is required";
-      $('[name='+name+']').after(p);
+      let span = document.createElement("span");
+      span.className  = "validlabel";
+      span.innerHTML = "This field is required";
+      $('[name='+name+']').css('border-color','red');
+      $('[name='+name+']').parent().after(span);
+      return false;
   } else {
-    text = "";
+    if(name == 'dueDate' && $('#createDate').val() > $('#dueDate').val()){     
+      let span = document.createElement("span");
+      span.className  = "validlabel";
+      span.innerHTML = "Due date must be equal to or later than the creation date";
+      $('[name='+name+']').css('border-color','red');
+      $('[name='+name+']').parent().after(span);
+      return false;
+    }else{
+      return true;
+    }
+  
   }
   
-
-  if(text == "") return true;
-  else return false;
 }
+
 
 function deleteIssue(dom){
   let firebaseId = $(dom).parents('.task').attr('id');
@@ -282,14 +302,18 @@ function updateIssue(button){
   $('.validlabel').remove();
   let validate = true;
   $(button).parents('.task').find("input").each(function(index,input){
+      $(input).css('border-color','gray');
      if(validateInput($(input).attr('name'))== false){
           validate = false;
      }    
   })
+  if(validateInput("issueContent") ==false){
+    validate = false;
+  }
   
   if(validate){   
      
-        let issueObject ={
+      let issueObject ={
           status:$('#status').val(),
           issueType:$('#issueType').val(),
           issueContent:$('#issueContent').val(),
@@ -324,7 +348,7 @@ function updateIssue(button){
             </div>
           </div>`
           $('.project-column[name='+issueObject.status +']').append(template);
-
+          bindingEvent();
           $(button).parents('.task').remove();
       });
         
@@ -351,9 +375,15 @@ function editFormIssue(dom){
   db.collection('kanbanIssue').doc(firebaseId).get().then((snapshot)=>{
     let data = snapshot.data()
     let addIssue = $(`<div class='inputTask'>
-         <div><label for='status'>Status</label><input style='font-weight:bold; color:brown' id="status" name="status" type="text" value=${data.status} disabled></div>
+         <div><label for='status'>Status</label>
+         <select id='status'>
+         <option value="Backlog">Backlog</option>
+         <option value="InProgress">InProgress</option>
+         <option value="Review" >Review</option>
+         <option value="Done" >Done</option>
+         </select></div>
          <div><label for='issueType'>IssueType</label> <select id='issueType'><option value="Idea">Idea</option><option value="Bug">Bug</option><option value="Task" >Task</option></select></div>
-         <label for='issueContent'>Content</label> <textarea id= 'issueContent'>${data.issueContent}</textarea>
+         <div><label for='issueContent'>Content</label> <textarea id= 'issueContent' name='issueContent'>${data.issueContent}</textarea></div>
          <div><label for='priority'>Priority</label>  
          <select id='priority'>
          <option value="Critical">Critical</option>
@@ -376,6 +406,7 @@ function editFormIssue(dom){
        </div>`);
        addIssue.find("option[value="+data.priority+"]").attr("selected",true)
        addIssue.find("option[value="+data.issueType+"]").attr("selected",true)
+       addIssue.find("option[value="+data.status+"]").attr("selected",true)
    
       $(dom).parents('.task').html(addIssue);
   })
@@ -385,8 +416,5 @@ function editFormIssue(dom){
 function restoreIssue(dom){
   $(dom).parents('.task').html(globalTempMemory);
   globalTempMemory= "";
-  $('.task__options').on('click',function(){
-    editFormIssue(this);
-   
-  })
+  bindingEvent();
 }

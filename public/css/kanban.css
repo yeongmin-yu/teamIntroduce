@@ -79,6 +79,7 @@ h1 {
 
 .validlabel{
   color: red;
+  text-align: right;
 }
 .project {
     padding: 2rem 0;
@@ -280,7 +281,7 @@ h1 {
 }
 
 .inputTask textarea {
-    width: 100%;
+    width: calc(100% - 80px);
     max-width:573px;
     height: 80px;
     border-radius: 5px;

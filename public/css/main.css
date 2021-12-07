@@ -49,7 +49,10 @@ header{
     margin-top: 50px;
     max-width: 100%;
 }
-
+.updateButtonGroup{
+        
+    display:flex; width:100%;justify-content: space-between
+}
 
 
 @media (min-width:997px) {
@@ -186,6 +189,11 @@ header{
 /*-----------------------------------------------휴대폰-----------------------------------------------------------*/
 @media (max-width:767px) {
 
+    .updateButtonGroup{
+        
+        display:flex; width:100%;
+        justify-content: center;
+    }
    
     
     nav li:first-of-type a{

@@ -34,8 +34,28 @@ function validateInput(name, parent){
     else return false;
 }
 
+if("index.html"){
 
-if(document.location.href.indexOf("team_add.html")>=0){
+    $( document ).ready( function() {
+            
+        $('.ani_first').css({'opacity':'1','transform':'translateY(0)'});
+    
+        $(window).scroll( function(){
+            
+            $('.ani').each( function(i){
+    
+                var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+    
+                if( bottom_of_window-bottom_of_window*-0.15 > bottom_of_element ){
+                    $(this).animate({'opacity':'1','margin-top':'0'},300);
+                }
+    
+            });
+        });
+    } );
+}
+else if(document.location.href.indexOf("team_add.html")>=0){
     const db = firebase.firestore();
     const storage= firebase.storage();
 
@@ -114,15 +134,15 @@ else if(document.location.href.indexOf("team.html") >=0){
             {
               
                 var template = `
-                <section class="member">
+                <section class="member" >
                 <h3  class="ani">${doc.data().position}, ${doc.data().name}</h3>
-                    <div>
+                    <div style="display: flex;">
                         <img src="${url}" id='profileImage' alt="" class="ani">
                         <ul class="introduce ani">
                             <li>${doc.data().description}</li>
-                            <li><h4>자주하는 말</h4>${doc.data().column1}</li>
-                            <li><h4>좋우리는 것</h4>${doc.data().column2}</li>
-                            <li><h4>싫어하는 것</h4>${doc.data().column3}</li>
+                            <li><h4>Favorite Words</h4>${doc.data().column1}</li>
+                            <li><h4>Like</h4>${doc.data().column2}</li>
+                            <li><h4>Hate</h4>${doc.data().column3}</li>
                         </ul>
                     </div>
                     <div class="hashtag ani">
@@ -160,25 +180,25 @@ else if(document.location.href.indexOf("team.html") >=0){
                 
                     var template = `
                     <section class="member" id='${doc.id}'>
-                        <div>
+                        <div style="display: flex;">
                             <div id="image_preview">
                                 <img src="${url}" id='profileImage' alt="사진영역"  ">
                             </div>
                             <ul class="introduce notani">
                                 
-                                <li><h4>프로필 사진</h4>
+                                <li><h4>Profile Picture</h4>
                                     <input class="required" type="file" value ='${doc.data().imgsrc}'
                                         name="profile" name="profile"
                                         accept="image/png, image/jpeg"></li>
-                                <li><h4>포지션</h4><input class="required" name="position" type='text' value='${doc.data().position}'></input></li>
-                                <li><h4>이름</h4><input class="required" name="name"  type='text' value='${doc.data().name}'></input></li>
-                                <li><h4>간단한 소개</h4><textarea style='width:100%;'class="required" name="description" >${doc.data().description}</textarea></li>
-                                <li><h4>자주하는 말</h4><input class="required" name="column1"  type='text'  value='${doc.data().column1}'></input></li>
-                                <li><h4>좋아하는 것</h4><input class="required" name="column2" type='text'  value='${doc.data().column2}'></input></li>
-                                <li><h4>싫어하는 것</h4><input class="required" name="column3" type='text'  value='${doc.data().column3}'></input></li>
-                                <li><h4>해쉬 태그</h4><input class="required" name="hashtag"  type='text'  value='${doc.data().hashtag}'></input></li>
-                                <div style='display:flex; width:100%;justify-content: space-between'>
-                                <div style='width:82%'><input type="button"  style='width:100%' class='btn btn-primary mt-3' name='send' value="업데이트" onClick='updateProfile(this)' /></div>
+                                <li><h4>Position</h4><input class="required" name="position" type='text' value='${doc.data().position}'></input></li>
+                                <li><h4>Name</h4><input class="required" name="name"  type='text' value='${doc.data().name}'></input></li>
+                                <li><h4>Brief Introduction</h4><textarea class="required" name="description" >${doc.data().description}</textarea></li>
+                                <li><h4>Favorite Words</h4><input class="required" name="column1"  type='text'  value='${doc.data().column1}'></input></li>
+                                <li><h4>Like</h4><input class="required" name="column2" type='text'  value='${doc.data().column2}'></input></li>
+                                <li><h4>Hate</h4><input class="required" name="column3" type='text'  value='${doc.data().column3}'></input></li>
+                                <li><h4>Hash Tag</h4><input class="required" name="hashtag"  type='text'  value='${doc.data().hashtag}'></input></li>
+                                <div class='updateButtonGroup' >
+                                <div style='width:82%'><input type="button"  style='width:100%' class='btn btn-primary mt-3' name='send' value="Update" onClick='updateProfile(this)' /></div>
                                 <div><svg style=' cursor:pointer;' xmlns="http://www.w3.org/2000/svg" onclick=deleteProfile(this) width="35" height="35" fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                               </svg></div>
@@ -196,7 +216,7 @@ else if(document.location.href.indexOf("team.html") >=0){
                         //배열에 추출한 확장자가 존재하는지 체크
                         if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
                             resetFormElement($(this)); //폼 초기화
-                            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+                            window.alert('Not Image! (only gif, png, jpg, jpeg)');
                         } else {
                             file = $(this).parents('.member').find('[name=profile]').prop("files")[0];
                             blobURL = window.URL.createObjectURL(file);
