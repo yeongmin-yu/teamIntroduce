@@ -1,11 +1,5 @@
 @import url(reset.css);
 
-@font-face { font-family: 'S-CoreDream-9Black'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-7ExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal;}
-@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 body{
     font-family: 'S-CoreDream-3Light';
@@ -31,7 +25,10 @@ header{
 
 .mont{
     font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
+    font-weight: 600;
+    color: white;
+    text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;
+    text-align: justify;
 }
 
 #content .ani{
@@ -49,9 +46,10 @@ header{
     margin-top: 50px;
     max-width: 100%;
 }
-
-
-
+.section1{
+    
+    background-image: url(../images/library.png) !important;
+}
 @media (min-width:997px) {
    
     nav li:nth-of-type(1) a{
@@ -67,11 +65,12 @@ header{
     .section_inner{
         width: 1000px;
         margin: 0 auto;
+        text-align: justify;
     }
     
     .section1{
         padding: 180px 0 120px 0;
-        font-size: 65px;
+        font-size: 45px;
         font-family: 'S-CoreDream-8heavy';
         color: #d3dbd3;
     }
@@ -93,7 +92,6 @@ header{
         margin-top: -160px;
         background: #fff;
         padding: 25px;
-        text-align: center;
         font-size: 20px;
         line-height: 1.8;
     }
@@ -132,6 +130,7 @@ header{
     .section_inner{
         width: 650px;
         margin: 0 auto;
+        text-align: justify;
     }
     
     .section1{
@@ -159,9 +158,9 @@ header{
         margin-top: -160px;
         background: #fff;
         padding: 25px;
-        text-align: center;
         font-size: 20px;
         line-height: 1.8;
+        text-align: justify;
     }
     
     .section_inner_border{
@@ -200,6 +199,7 @@ header{
     
     .section_inner{
         padding: 0 20px;
+        text-align: justify;
     }
     
     .section1{
@@ -229,7 +229,7 @@ header{
     .section3 .section_inner{
         background: #fff;
         padding: 8px;
-        text-align: center;
+        /* text-align: center; */
         font-size: 16px;
         line-height: 1.8;
         width: 100%;

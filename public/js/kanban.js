@@ -98,7 +98,7 @@ $(document).ready(function(){
         }
         let template = `<div class='task' draggable='true' id='${result.id}''>
           <div class='task__tags'>
-            <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span>Owner <i class="fas fa-paperclip"></i>${issueObject.owner}</span>      
+            <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span class='owner_tag'>Owner : ${issueObject.owner}</span>      
             <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
           </div>
           <p>${issueObject.issueContent}</p>
@@ -135,7 +135,7 @@ $(document).ready(function(){
             }
             let template = `<div class='task' draggable='true' id='${doc.id}''>
               <div class='task__tags'>
-                <span class='task__tag task__tag--${doc.data().issueType}'>${doc.data().issueType}</span>  <span>Owner <i class="fas fa-paperclip"></i>${doc.data().owner}</span>      
+                <span class='task__tag task__tag--${doc.data().issueType}'>${doc.data().issueType}</span>  <span class='owner_tag'>Owner : ${doc.data().owner}</span>      
                 <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
               </div>
               <p>${doc.data().issueContent}</p>
@@ -335,7 +335,7 @@ function updateIssue(button){
           }
           let template = `<div class='task' draggable='true' id='${docId}''>
             <div class='task__tags'>
-              <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span>Owner <i class="fas fa-paperclip"></i>${issueObject.owner}</span>      
+              <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span class='owner_tag'>Owner : </i>${issueObject.owner}</span>      
               <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
             </div>
             <p>${issueObject.issueContent}</p>

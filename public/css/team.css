@@ -1,18 +1,11 @@
 @import url(reset.css);
-
-@font-face { font-family: 'S-CoreDream-9Black'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-7ExtraBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'S-CoreDream-2ExtraLight'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff'); font-weight: normal; font-style: normal;}
-@font-face { font-family: 'S-CoreDream-3Light'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); font-weight: normal; font-style: normal; }
 *{
     box-sizing: initial;
 }
 body{
     font-family: 'S-CoreDream-3Light';
     color: #182f2e;
-    background: #faf9f5;
+    background: #f4f1e7;
     box-sizing: border-box;
     line-height: 1.5;
 }
@@ -65,7 +58,7 @@ h3{
 .floatingButton > .buttons[name=setting]{
     background-image: url(../images/cogwheel.png);
     background-repeat: no-repeat;
-    background-size: 40px;
+    background-size: 55px;
     background-color: white;
     background-position: center center;
    
@@ -107,9 +100,6 @@ h3{
     transform: translateY(50px);
 }
 
-.floatingButton:not(:hover) .buttons:last-child {
-    background-color: #17b978;
-}
 
 .floatingButton:hover .buttons:not(:last-child) {
     opacity: 1;
@@ -187,6 +177,9 @@ h3{
     display:flex; width:100%;justify-content: space-between
 }
   
+.section1{
+    background:#faf9f5;
+}
 @media (min-width:997px) {/*최소1350 ~ 최대,pc 크기*/
     nav li:nth-of-type(2) a{
         color: #fff;
@@ -240,6 +233,7 @@ h3{
     .introduce li{
         padding-bottom: 20px;
         width:100%;
+        text-align: justify;
     }
     .introduce input{
     
@@ -330,6 +324,7 @@ h3{
     
     .introduce li{
         padding-bottom: 20px;
+        text-align: justify;
     }
     .introduce input{
     
@@ -420,6 +415,7 @@ h3{
     
     .introduce li{
         padding-bottom: 15px;
+        text-align: justify;
     }
     .introduce input{
     

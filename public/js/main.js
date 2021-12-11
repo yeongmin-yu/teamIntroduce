@@ -38,8 +38,7 @@ if(document.location.href.indexOf("index.html")>=0){
 
     $( document ).ready( function() {
             
-        $('.ani_first').css({'opacity':'1','transform':'translateY(0)'});
-    
+       
         $(window).scroll( function(){
             
             $('.ani').each( function(i){
@@ -48,7 +47,7 @@ if(document.location.href.indexOf("index.html")>=0){
                 var bottom_of_window = $(window).scrollTop() + $(window).height();
     
                 if( bottom_of_window-bottom_of_window*-0.15 > bottom_of_element ){
-                    $(this).animate({'opacity':'1','margin-top':'0'},300);
+                    $(this).animate({'opacity':'1','margin-top':'0'},150);
                 }
     
             });
