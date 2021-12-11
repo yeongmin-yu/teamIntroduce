@@ -180,7 +180,7 @@ h3{
 .section1{
     background:#faf9f5;
 }
-@media (min-width:997px) {/*최소1350 ~ 최대,pc 크기*/
+@media (min-width:1200px) {/*최소1350 ~ 최대,pc 크기*/
     nav li:nth-of-type(2) a{
         color: #fff;
         background: #2b4443;
@@ -189,6 +189,27 @@ h3{
     .section1{
         padding: 115px 0 70px 0;
         text-align: center;
+    }
+     
+    
+    .section_inner{
+        width: 1000px;
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .section2 {
+        padding: 50px;
+        background-image: url(../images/team_background.jpg)
+    }
+    .section2 .section_inner{
+       
+        background: #fff;
+        padding: 25px;
+    }
+    
+    .section_inner_border{
+        border: 2px solid #182f2e;
+        padding: 10px;
     }
     
     h2{
@@ -268,7 +289,7 @@ h3{
     
 }/*desktop*/
 
-@media (min-width:768px) and (max-width:996px){
+@media (min-width:768px) and (max-width:1200px){
  
     
     nav li:nth-of-type(2) a{
@@ -280,6 +301,23 @@ h3{
     .section1{
         padding: 115px 0 70px 0;
         text-align: center;
+    }
+    .section_inner{
+        width: 90%;
+        margin: 0 auto;
+        text-align: justify;
+    }
+    .section2 {
+        background-image: url(../images/team_background.jpg)
+    }
+    .section2 .section_inner{
+        padding: 10px;
+        background: #fff;
+    }
+    
+    .section_inner_border{
+        border: 2px solid #182f2e;
+        padding: 10px;
     }
     
     h2{
@@ -379,6 +417,18 @@ h3{
         padding: 100px 0 50px 0;
         text-align: center;
     }
+    .section_inner{
+        width: 100%;
+        text-align: justify;
+    }
+    .section2 .section_inner{
+        background: #fff;
+    }
+    
+    .section_inner_border{
+        border: 2px solid #182f2e;
+        padding: 10px;
+    }
     
     h2{
         font-family: 'S-CoreDream-8Heavy';
@@ -405,6 +455,7 @@ h3{
     
     .member > div:nth-of-type(1){
         padding-top: 20px;
+        flex-direction: column;
     }
     
     
@@ -414,7 +465,7 @@ h3{
     }
     
     .introduce li{
-        padding-bottom: 15px;
+        padding: 15px;
         text-align: justify;
     }
     .introduce input{

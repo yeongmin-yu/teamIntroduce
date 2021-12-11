@@ -148,10 +148,10 @@ else if(document.location.href.indexOf("team.html") >=0){
                         ${doc.data().hashtag}
                     </div>            
                 </section>`
-                $('#content').append(template);
-                if(i==0){
-                    $('#content').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
-                } 
+                $('.section_inner_border').append(template);
+                if(i < 2){
+                    $('.section_inner_border').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
+                }
                 i++;
 
             }).catch(function(error) 
