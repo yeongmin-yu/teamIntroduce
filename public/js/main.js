@@ -11,7 +11,7 @@ const firebaseConfig = {
     appId: "1:4746707129:web:e25daa30af733905171b68"
 };
 
-// Initialize Firebase
+// Initialize Firebase-
 firebase.initializeApp(firebaseConfig);
 
 function validateInput(name, parent){
@@ -54,74 +54,27 @@ if(document.location.href.indexOf("index.html")>=0){
         });
     } );
 }
-else if(document.location.href.indexOf("team_add.html")>=0){
-    const db = firebase.firestore();
-    const storage= firebase.storage();
 
-    
-    $('[name=profile]').change(function(){
-        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
-        //배열에 추출한 확장자가 존재하는지 체크
-        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-            resetFormElement($(this)); //폼 초기화
-            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
-        } else {
-            file = $('[name=profile]').prop("files")[0];
-            blobURL = window.URL.createObjectURL(file);
-            $('#image_preview img').attr('src', blobURL);
-            $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
-          
-        }
-    })
-    $('input[name=send]').click(function(){
-        
-        $('.validlabel').remove();
-        let validate = true;
-        $(".member input").each(function(index,input){
-           if(validateInput($(input).attr('name'))== false){
-                validate = false;
-           }    
-        })
-        
-       if(validate){   
-            var profileFile =$('.member').find('input[name=profile]')[0].files[0];
-            var savepath="";
-            if(!!profileFile){
-                let storageRef = storage.ref();
-                let savePath = storageRef.child('profileImage/'+ $('[name=name]').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
-                let saveAction = savePath.put(profileFile);
-                saveAction.then(()=>{
-                    const ref = firebase.storage().ref(savePath.fullPath);
-                    console.log(savePath.fullPath + "upload complete");
-                }).catch((err)=>{
-                    console.log(err);
-                })
-                savepath = savePath.fullPath;
-            }   
-            let userObject ={
-                position:$('[name=position]').val(),
-                name:$('[name=name]').val(),
-                description:$('[name=description').val(),
-                column1:$('[name=column1]').val(),
-                column2:$('[name=column2]').val(),
-                column3:$('[name=column3]').val(),
-                hashtag:$('[name=hashtag]').val(),
-                imgsrc:savepath
-            }
-            db.collection('userinfo').add(userObject).then((result) => {
-                console.log(result);
-            
-                window.location.href = './team.html'
-            }).catch((err)=>{
-                console.log(err);
-            })
-        
-       }
-        
-    })
-    
-}
 else if(document.location.href.indexOf("team.html") >=0){
+
+    $( document ).ready( function() {
+                
+        $('.ani_first').css({'opacity':'1','transform':'translateY(0)'});
+  
+        $(window).scroll( function(){
+            
+           $('.ani').each( function(i){
+    
+                var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                if( bottom_of_window-1 > bottom_of_element ){
+                    $(this).animate({'opacity':'1','margin-top':'0'},300);
+                }
+
+            });
+        });
+    } );
     const db = firebase.firestore();
     db.collection('userinfo').get().then((snapshot)=>{
       
@@ -149,7 +102,7 @@ else if(document.location.href.indexOf("team.html") >=0){
                     </div>            
                 </section>`
                 $('.section_inner_border').append(template);
-                if(i < 2){
+                if(i == 0){
                     $('.section_inner_border').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
                 }
                 i++;
@@ -205,9 +158,9 @@ else if(document.location.href.indexOf("team.html") >=0){
                             </ul>            
                         </div>     
                     </section>`
-                    $('#content').append(template);
+                    $('.section_inner_border').append(template);
                     if(i==0){
-                        $('#content').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
+                        $('.section_inner_border').find('.member').find('.ani').css({'opacity':'1','transform':'translateY(0)','margin-top':'0'});
                     } 
                     i++;
                     $('#'+doc.id).find('input[name=profile]').change(function(){
@@ -287,6 +240,7 @@ else if(document.location.href.indexOf("team.html") >=0){
 
             let docId = $(button).parents('.member').attr('id');
             db.collection('userinfo').doc(docId).update(userObject);
+            alert("update complete");
             
         }
     }
@@ -305,4 +259,73 @@ else if(document.location.href.indexOf("team.html") >=0){
         }
         
     }
+}
+else if(document.location.href.indexOf("team_add.html")>=0){
+
+    const db = firebase.firestore();
+    const storage= firebase.storage();
+
+    
+    $('[name=profile]').change(function(){
+        ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+        //배열에 추출한 확장자가 존재하는지 체크
+        if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+            resetFormElement($(this)); //폼 초기화
+            window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+        } else {
+            file = $('[name=profile]').prop("files")[0];
+            blobURL = window.URL.createObjectURL(file);
+            $('#image_preview img').attr('src', blobURL);
+            $('#image_preview').slideDown(); //업로드한 이미지 미리보기 
+          
+        }
+    })
+    $('input[name=send]').click(function(){
+        
+        $('.validlabel').remove();
+        let validate = true;
+        $(".member input").each(function(index,input){
+           if(validateInput($(input).attr('name'))== false){
+                validate = false;
+           }    
+        })
+        
+       if(validate){   
+            var profileFile =$('.member').find('input[name=profile]')[0].files[0];
+            var savepath="";
+            if(!!profileFile){
+                let storageRef = storage.ref();
+                let savePath = storageRef.child('profileImage/'+ $('[name=name]').val()+new Date().getTime()+"."+profileFile.name.split('.')[1]);
+                let saveAction = savePath.put(profileFile);
+                saveAction.then(()=>{
+                    const ref = firebase.storage().ref(savePath.fullPath);
+                    console.log(savePath.fullPath + "upload complete");
+                    let userObject ={
+                        position:$('[name=position]').val(),
+                        name:$('[name=name]').val(),
+                        description:$('[name=description').val(),
+                        column1:$('[name=column1]').val(),
+                        column2:$('[name=column2]').val(),
+                        column3:$('[name=column3]').val(),
+                        hashtag:$('[name=hashtag]').val(),
+                        imgsrc:savepath
+                    }
+                    db.collection('userinfo').add(userObject).then((result) => {
+                        console.log(result);
+                    
+                        window.location.href = './team.html'
+                    }).catch((err)=>{
+                        console.log(err);
+                    })
+                }).catch((err)=>{
+                    console.log(err);
+                })
+                savepath = savePath.fullPath;
+            }   
+        
+        
+       }
+        
+    })
+    
 }

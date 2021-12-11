@@ -10,26 +10,7 @@
 
   	<link rel="stylesheet" type="text/css" href="css/team.css"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-		<script>
-			$( document ).ready( function() {
-                
-                $('.ani_first').css({'opacity':'1','transform':'translateY(0)'});
-          
-				$(window).scroll( function(){
-                    
-                   $('.ani').each( function(i){
-            
-                        var bottom_of_element = $(this).offset().top + $(this).outerHeight();
-                        var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-                        if( bottom_of_window-1 > bottom_of_element ){
-                            $(this).animate({'opacity':'1','margin-top':'0'},300);
-                        }
-
-                    });
-                });
-			} );
-		</script>
+	
 </head>
 <body>
 <!--header-->

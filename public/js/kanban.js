@@ -20,106 +20,111 @@ $(document).ready(function(){
     } );
 });
 
-  function addIssue(button){
-    let addIssue = $(`
-    <div class='task' name='temptask' style=' border: 3px dashed black;'>
-       <div class='inputTask'>
-         <div><label for='status'>Status</label><input style='font-weight:bold; color:brown' id="status" name="status" type="text" value=${$(button).val()} disabled></div>
-         <div><label for='issueType'>IssueType</label> <select id='issueType'><option value="Idea" selected>Idea</option><option value="Bug">Bug</option><option value="Task" >Task</option></select></div>
-         <div><label for='issueContent'>Content</label> <textarea id= 'issueContent' name='issueContent'></textarea></div>
-         <div><label for='priority'>Priority</label>  <select id='priority'><option value="Critical">Critical</option><option value="Minor" selected>Minor</option><option value="Trivial" >Trivial</option></select></div>
-         <div><label for='owner'>Owner</label> <input id="owner" name="owner" type="text"></div>
-         <div><label for='createDate'>Created</label> <input id="createDate" name="createDate" type="date" disabled></div>
-         <div><label for='dueDate'>Due</label> <input id="dueDate" name="dueDate" type="date"></div>
-       </div>
-       <div class='inputTask-footer'>
-       <div>
-       </div>
-       <div>
-        <button class="cancel-button" onClick=cancelIssue(this)>Cancel</button>
-        <button class="save-button" onClick=saveIssue(this)>Save</button>
-       </div>
-      
-       </div>
-     </div>`);
-
-    if($('[name=temptask]').length > 0){
-      let result =  confirm('There is a job being created, would you like to delete it and create a new one?');
-      if(result== true){
-        $('[name=temptask]').remove();
-        $(button).parents('.project-column').append(addIssue);
-      }
-    }else{ 
-  
-       $(button).parents('.project-column').append(addIssue);
-    }
-    let currDate = new Date();
-    currDate.setHours(currDate.getHours()+9)
-    $('#createDate').val(currDate.toISOString().substring(0,10)) ;
-  
-  }
-  function cancelIssue(button){
-    $(button).parents('.task').remove();
-  }
-
-  function saveIssue(button){
-    const db = firebase.firestore();
-
+function addIssue(button){
+  let addIssue = $(`
+  <div class='task' name='temptask' style=' border: 3px dashed black;'>
+      <div class='inputTask'>
+        <div><label for='status'>Status</label><input style='font-weight:bold; color:brown' id="status" name="status" type="text" value=${$(button).val()} disabled></div>
+        <div><label for='issueType'>IssueType</label> <select id='issueType'><option value="Idea" selected>Idea</option><option value="Bug">Bug</option><option value="Task" >Task</option></select></div>
+        <div><label for='issueContent'>Content</label> <textarea id= 'issueContent' name='issueContent'></textarea></div>
+        <div><label for='priority'>Priority</label>  <select id='priority'><option value="Critical">Critical</option><option value="Minor" selected>Minor</option><option value="Trivial" >Trivial</option></select></div>
+        <div><label for='owner'>Owner</label> <input id="owner" name="owner" type="text"></div>
+        <div><label for='createDate'>Created</label> <input id="createDate" name="createDate" type="date" disabled></div>
+        <div><label for='dueDate'>Due</label> <input id="dueDate" name="dueDate" type="date"></div>
+      </div>
+      <div class='inputTask-footer'>
+      <div>
+      </div>
+      <div>
+      <button class="cancel-button" onClick=cancelIssue(this)>Cancel</button>
+      <button class="save-button" onClick=saveIssue(this)>Save</button>
+      </div>
     
-    $('.validlabel').remove();
-    let validate = true;
-    $(button).parents('.task').find("input").each(function(index,input){
-      if(validateInput($(input).attr('name'))== false){
-            validate = false;
-      }    
-    })
-    if(validateInput("issueContent") ==false){
-      validate = false;
-    }
-    if(validate){  
-      let issueObject ={
-        status:$('#status').val(),
-        issueType:$('#issueType').val(),
-        issueContent:$('#issueContent').val(),
-        priority:$('#priority').val(),
-        owner:$('#owner').val(),
-        createDate:$('#createDate').val(),
-        dueDate:$('#dueDate').val(),
+      </div>
+    </div>`);
+
+  if($('[name=temptask]').length > 0 || $('[name=edittask]').length > 0){
+    let result =  confirm('There is a job being created, would you like to delete it and create a new one?');
+    if(result== true){
+      if($('[name=temptask]').length > 0)
+       $('[name=temptask]').remove();
+      if($('[name=edittask]').length > 0){
+        restoreIssue($('[name=edittask]').parent().find('.cancel-button'))
       }
-      db.collection('kanbanIssue').add(issueObject).then((result) => {
-
-        let priorityClass= ""
-        if(issueObject.priority == "Critical"){
-          priorityClass = "task__priority_red";
-        }else if(issueObject.priority == "Minor"){
-          priorityClass = "task__priority_yellow";
-        }else if(issueObject.priority == "Trivial"){
-          priorityClass = "task__priority_green";
-        }
-        let template = `<div class='task' draggable='true' id='${result.id}''>
-          <div class='task__tags'>
-            <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span class='owner_tag'>Owner : ${issueObject.owner}</span>      
-            <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
-          </div>
-          <p>${issueObject.issueContent}</p>
-          <div class='task__stats'>
-            <span>Start <i class="fas fa-flag"></i>${issueObject.createDate}</span>
-            <span>Due <i class="fas fa-comment"></i>${issueObject.dueDate}</span>
-                    
-            <span class='${priorityClass}'></span>
-          </div>
-          </div>
-        </div>`
-        $('.project-column[name='+issueObject.status +']').append(template);
-
-        $(button).parents('.task').remove();
-      }).catch((err)=>{
-          console.log(err);
-      })
+      $(button).parents('.project-column').append(addIssue);
     }
-  }
+  }else{ 
 
-  (function loadIssue(){
+      $(button).parents('.project-column').append(addIssue);
+  }
+  let currDate = new Date();
+  currDate.setHours(currDate.getHours()+9)
+  $('#createDate').val(currDate.toISOString().substring(0,10)) ;
+
+}
+function cancelIssue(button){
+  $(button).parents('.task').remove();
+}
+
+function saveIssue(button){
+  const db = firebase.firestore();
+
+  
+  $('.validlabel').remove();
+  let validate = true;
+  $(button).parents('.task').find("input").each(function(index,input){
+    if(validateInput($(input).attr('name'))== false){
+          validate = false;
+    }    
+  })
+  if(validateInput("issueContent") ==false){
+    validate = false;
+  }
+  if(validate){  
+    let issueObject ={
+      status:$('#status').val(),
+      issueType:$('#issueType').val(),
+      issueContent:$('#issueContent').val(),
+      priority:$('#priority').val(),
+      owner:$('#owner').val(),
+      createDate:$('#createDate').val(),
+      dueDate:$('#dueDate').val(),
+    }
+    db.collection('kanbanIssue').add(issueObject).then((result) => {
+
+      let priorityClass= ""
+      if(issueObject.priority == "Critical"){
+        priorityClass = "task__priority_red";
+      }else if(issueObject.priority == "Minor"){
+        priorityClass = "task__priority_yellow";
+      }else if(issueObject.priority == "Trivial"){
+        priorityClass = "task__priority_green";
+      }
+      let template = `<div class='task' draggable='true' id='${result.id}''>
+        <div class='task__tags'>
+          <span class='task__tag task__tag--${issueObject.issueType}'>${issueObject.issueType}</span>  <span class='owner_tag'>Owner : ${issueObject.owner}</span>      
+          <button class='task__options'><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 12c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2zm-8 0c0-1.656 1.344-3 3-3s3 1.344 3 3-1.344 3-3 3-3-1.344-3-3zm1 0c0-1.104.896-2 2-2s2 .896 2 2-.896 2-2 2-2-.896-2-2z"/></svg></button>
+        </div>
+        <p>${issueObject.issueContent}</p>
+        <div class='task__stats'>
+          <span>Start <i class="fas fa-flag"></i>${issueObject.createDate}</span>
+          <span>Due <i class="fas fa-comment"></i>${issueObject.dueDate}</span>
+                  
+          <span class='${priorityClass}'></span>
+        </div>
+        </div>
+      </div>`
+      $('.project-column[name='+issueObject.status +']').append(template);
+
+      $(button).parents('.task').remove();
+      bindingEvent();
+    }).catch((err)=>{
+        console.log(err);
+    })
+  }
+}
+
+(function loadIssue(){
     const db = firebase.firestore();
     db.collection('kanbanIssue').get().then((snapshot)=>{
       
@@ -374,7 +379,7 @@ function editFormIssue(dom){
   const db = firebase.firestore();
   db.collection('kanbanIssue').doc(firebaseId).get().then((snapshot)=>{
     let data = snapshot.data()
-    let addIssue = $(`<div class='inputTask'>
+    let addIssue = $(`<div class='inputTask' name='edittask'>
          <div><label for='status'>Status</label>
          <select id='status'>
          <option value="Backlog">Backlog</option>
@@ -401,7 +406,7 @@ function editFormIssue(dom){
           <div>
             <button class="cancel-button" onClick=restoreIssue(this)>Cancel</button>
           <button class="save-button" onClick=updateIssue(this)>Save</button>
-          <div>
+          <div>-
          
        </div>`);
        addIssue.find("option[value="+data.priority+"]").attr("selected",true)

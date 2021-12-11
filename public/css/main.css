@@ -49,6 +49,9 @@ header{
 .section1{
     
     background-image: url(../images/library.png) !important;
+    background-repeat: no-repeat;
+    background: bottom;
+
 }
 @media (min-width:997px) {
    
@@ -65,7 +68,6 @@ header{
     .section_inner{
         width: 1000px;
         margin: 0 auto;
-        text-align: justify;
     }
     
     .section1{
@@ -94,6 +96,7 @@ header{
         padding: 25px;
         font-size: 20px;
         line-height: 1.8;
+        text-align: justify;
     }
     
     .section_inner_border{
@@ -130,7 +133,9 @@ header{
     .section_inner{
         width: 650px;
         margin: 0 auto;
-        text-align: justify;
+    }
+    .section1 .selection_inner{
+        text-align: left;
     }
     
     .section1{
@@ -206,6 +211,10 @@ header{
         font-family: 'S-CoreDream-8heavy';
         color: #d3dbd3;
     }
+
+    .section1 .selection_inner{
+        text-align: left;
+    }
     
     .section1 h2{
         color: #182f2e;
@@ -234,6 +243,8 @@ header{
         margin: 0 auto;
         margin-top: -70px;
         box-sizing: border-box;
+        
+        text-align: justify;
     }
     
     .section_inner_border{
